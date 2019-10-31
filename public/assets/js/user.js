@@ -55,18 +55,19 @@ $(function() {
         })
         //根据id查询用户
     $('#tbodyBox').on('click', '.edit', function() {
-        var id = $(this).attr('data-id')
-        $.ajax({
-            url: `/users/${id}`,
-            type: 'get',
-            success: function(data) {
-                // console.log(data);
-                //将获取到的数据显示在左侧
-                var html = template('modifyTp2', data)
-                $('#modifyBox').html(html)
-            }
+            var id = $(this).attr('data-id')
+            $.ajax({
+                url: `/users/${id}`,
+                type: 'get',
+                success: function(data) {
+                    // console.log(data);
+                    //将获取到的数据显示在左侧
+                    var html = template('modifyTp2', data)
+                    $('#modifyBox').html(html)
+                }
+            })
         })
-    })
+        // 根据获取后的数据修改用户数据
     $('#modifyBox').on('submit', '#editForm', function() {
         var params = $(this).serialize()
         var id = $(this).attr('data-id')
