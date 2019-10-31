@@ -168,7 +168,7 @@
             <td>{{$value.role=='admin' ? '管理员':'普通用户'}}</td>
             <td class="text-center">
                 <a href="javascript:;" data-id="{{$value._id}}" class="btn btn-default btn-xs edit">编辑</a>
-                <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+                <a href="javascript:;" data-id="{{$value._id}}" class="btn btn-danger btn-xs delete">删除</a>
             </td>
         </tr>
         {{/each}}

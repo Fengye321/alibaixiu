@@ -69,19 +69,39 @@ $(function() {
         })
         // 根据获取后的数据修改用户数据
     $('#modifyBox').on('submit', '#editForm', function() {
-        var params = $(this).serialize()
-        var id = $(this).attr('data-id')
-        $.ajax({
-            url: `/users/${id}`,
-            type: 'put',
-            data: params,
-            success: function(data) {
-                console.log(data);
-                location.reload()
+            var params = $(this).serialize()
+            var id = $(this).attr('data-id')
+            $.ajax({
+                url: `/users/${id}`,
+                type: 'put',
+                data: params,
+                success: function(data) {
+                    // console.log(data);
+                    location.reload()
 
-            }
+                }
+            })
+
+            return false
         })
+        //删除当前点击的数据
+        // var id = ''
+        //     id = id += $(this).attr('data-id') + '-'
+        //     var id = id.split('-')[0]
+        //     console.log(id);
+    $('#tbodyBox').on('click', '.delete', function() {
+        var isConfirm = confirm('是否确定删除???')
+        if (isConfirm) {
+            var id = $(this).attr('data-id')
+            $.ajax({
+                url: `/users/${id}`,
+                type: 'delete',
+                success: function(data) {
+                    // console.log(data);
+                    location.reload()
 
-        return false
+                }
+            })
+        }
     })
 })
