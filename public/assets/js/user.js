@@ -23,7 +23,6 @@ $(function() {
             var formData = new FormData()
             formData.append('avatar', this.files[0])
             console.log(this.files[0]);
-
             $.ajax({
                 url: '/upload',
                 type: 'post',
@@ -32,9 +31,8 @@ $(function() {
                 contentType: false,
                 success: function(data) {
                     console.log(data);
-                    $('#youphone').attr('src', data[0].avatar)
                     $('#hiddenAvatar').val(data[0].avatar)
-
+                    $('#hiddenAvatar').val(data[0].avatar)
                 },
                 error: function() {
                     alert('上传头像失败')
@@ -138,12 +136,14 @@ $(function() {
         deletes.each(function(index, item) {
             ids.push($(item).attr('data-id'))
         })
-        $.ajax({
-            url: `/users/${ids.join('-')}`,
-            type: 'delete',
-            success: function() {
-                location.reload()
-            }
-        })
+        if (confirm('确认删除')) {
+            $.ajax({
+                url: `/users/${ids.join('-')}`,
+                type: 'delete',
+                success: function() {
+                    location.reload()
+                }
+            })
+        }
     })
 })
